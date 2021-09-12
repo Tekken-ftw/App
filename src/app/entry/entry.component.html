@@ -1,4 +1,27 @@
 <div class="entry-container">
-<h2>Tekken pak</h2>
-<input class="search" placeholder="Søg her">
+  <form class="example-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Søg</mat-label>
+      <input type="text" matInput name="whatever" [formControl]="searchControl">
+    </mat-form-field>
+    <ng-container *ngIf="$filteredCharacters | async as characters; ">
+      <div class="search" *ngIf="characters.length > 0; else rank">
+        <div class="search-result" *ngFor="let item of $filteredCharacters | async ">
+          {{item}}
+        </div>
+      </div>
+      <ng-template #rank>
+
+        <h2>Hvad rank er du?</h2>
+        <div class="rank">
+          Grand master
+        </div>
+        <div class="rank">
+          Warrior
+        </div>
+        <div class="rank">
+          Mighty Ruler</div>
+      </ng-template>
+    </ng-container>
+  </form>
 </div>
